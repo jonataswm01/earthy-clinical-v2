@@ -1,24 +1,29 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { ReactLenis } from "@studio-freight/react-lenis";
+import { useEffect } from "react";
 
 type SmoothScrollingProps = {
   children: ReactNode;
 };
 
 export default function SmoothScrolling({ children }: SmoothScrollingProps) {
-  return (
-    <ReactLenis
-      root
-      options={{
-        lerp: 0.1,
-        duration: 1.5,
-        smoothWheel: true,
-      }}
-    >
-      {children}
-    </ReactLenis>
-  );
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    const previousHtmlBehavior = html.style.scrollBehavior;
+    const previousBodyBehavior = body.style.scrollBehavior;
+
+    html.style.scrollBehavior = "smooth";
+    body.style.scrollBehavior = "smooth";
+
+    return () => {
+      html.style.scrollBehavior = previousHtmlBehavior;
+      body.style.scrollBehavior = previousBodyBehavior;
+    };
+  }, []);
+
+  return <>{children}</>;
 }
 

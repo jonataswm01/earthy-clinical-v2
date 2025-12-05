@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 
+const easingBezier: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 const containerVariants = {
   hidden: {},
   visible: {
@@ -19,7 +21,7 @@ const fadeUp = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.22, 1, 0.36, 1],
+      ease: easingBezier,
     },
   },
 };
@@ -31,7 +33,7 @@ const textGroup = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.22, 1, 0.36, 1],
+      ease: easingBezier,
       staggerChildren: 0.15,
       delayChildren: 0.1,
     },
@@ -45,7 +47,7 @@ const textItem = {
     y: 0,
     transition: {
       duration: 0.7,
-      ease: [0.22, 1, 0.36, 1],
+      ease: easingBezier,
     },
   },
 };
