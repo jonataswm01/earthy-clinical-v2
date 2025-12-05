@@ -91,7 +91,7 @@ export default function Profile() {
             variants={textItem}
             className="font-mono text-xs uppercase tracking-widest text-accent"
           >
-            // A PROFISSIONAL
+            {"//"} A PROFISSIONAL
           </motion.span>
 
           <motion.h2

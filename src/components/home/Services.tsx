@@ -82,12 +82,16 @@ export default function Services() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const rightRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
-  const [xRange, setXRange] = useState<[string, string]>(["0px", "0px"]);
+  const [scrollDistance, setScrollDistance] = useState(0);
   const [isMobile, setIsMobile] = useState(true);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
   });
+
+  const xRange: [string, string] = isMobile
+    ? ["0px", "0px"]
+    : ["0px", `-${scrollDistance}px`];
 
   const x = useTransform(scrollYProgress, [0, 1], xRange);
   const smoothX: MotionValue<string> = useSpring(x, {
@@ -105,17 +109,13 @@ export default function Services() {
   }, []);
 
   useEffect(() => {
-    if (isMobile || !trackRef.current || !rightRef.current) {
-      setXRange(["0px", "0px"]);
-      return;
-    }
-
+    if (isMobile) return;
     const handleResize = () => {
       if (!trackRef.current || !rightRef.current) return;
       const trackWidth = trackRef.current.scrollWidth;
       const containerWidth = rightRef.current.offsetWidth;
       const distance = Math.max(0, trackWidth - containerWidth + 100);
-      setXRange(["0px", `-${distance}px`]);
+      setScrollDistance(distance);
     };
 
     handleResize();
@@ -132,7 +132,7 @@ export default function Services() {
       <div className="flex flex-col gap-8 px-6 py-20 md:hidden">
         <div className="mb-6">
           <span className="font-mono text-xs uppercase tracking-[0.6em] text-accent">
-            // Nossos Pilares
+            {"//"} Nossos Pilares
           </span>
           <h2 className="mt-4 font-serif text-4xl leading-tight text-primary">
             Um percurso orientado pela alma.
@@ -148,7 +148,7 @@ export default function Services() {
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <div className="z-20 flex h-full w-[40%] flex-col justify-center bg-background/95 pl-14 pr-10">
             <span className="font-mono text-xs uppercase tracking-[0.6em] text-accent">
-              // Nossos Pilares
+              {"//"} Nossos Pilares
             </span>
             <h2 className="mt-6 font-serif text-6xl leading-snug text-primary">
               Um percurso orientado pela alma, pela mente e pelas raízes.

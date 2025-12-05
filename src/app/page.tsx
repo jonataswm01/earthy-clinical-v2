@@ -3,8 +3,9 @@ import Hero from "@/components/home/Hero";
 import Manifesto from "@/components/home/Manifesto";
 import Profile from "@/components/home/Profile";
 import Services from "@/components/home/Services";
-import Atmosphere from "@/components/home/Atmosphere";
+import CTASection from "@/components/home/CTASection";
 import Footer from "@/components/home/Footer";
+import NextPageTrigger from "@/components/layout/NextPageTrigger";
 
 export default function Home() {
   return (
@@ -14,8 +15,9 @@ export default function Home() {
       <Manifesto />
       <Profile />
       <Services />
-      <Atmosphere />
+      <CTASection />
       <Footer />
+      <NextPageTrigger />
     </main>
   );
 }

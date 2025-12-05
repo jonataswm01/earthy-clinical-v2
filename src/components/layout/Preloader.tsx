@@ -25,7 +25,14 @@ export default function Preloader() {
       if (nextProgress < 100) {
         frameId = requestAnimationFrame(animate);
       } else {
-        timeoutId = setTimeout(() => setIsReady(true), 500);
+        timeoutId = setTimeout(() => {
+          setIsReady(true);
+          if (typeof window !== "undefined") {
+            const w = window as Window & { __PRELOADER_DONE__?: boolean };
+            w.__PRELOADER_DONE__ = true;
+            window.dispatchEvent(new Event("preloaderComplete"));
+          }
+        }, 500);
       }
     };
 
