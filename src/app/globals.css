@@ -17,13 +17,33 @@
 @layer base {
   body {
     @apply bg-background text-foreground antialiased;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent) rgba(47, 62, 48, 0.15);
+    -ms-overflow-style: auto;
   }
 
-  body::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent) rgba(47, 62, 48, 0.15);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(47, 62, 48, 0.08);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--color-accent), var(--color-primary));
+    border-radius: 999px;
+    border: 2px solid rgba(249, 249, 247, 0.8);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--color-primary), #1e2a1f);
   }
 }
